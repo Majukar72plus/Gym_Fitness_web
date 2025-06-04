@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gym Membership Offers</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet" />
+    <style>
+  body {
+    background-image: url('../assets/images/admin\ background.jpg'); /* Replace with your image URL */
+    background-size: cover;          /* Cover the entire page */
+    background-position: center;     /* Center the image */
+    background-repeat: no-repeat;    /* Don't repeat the image */
+    background-attachment: fixed;    /* Keep background fixed on scroll */
+    color: white;                    /* Optional: better text visibility */
+  }
+</style>
+</head>
+<body class="p-4">
+  <h1>Our Membership Plans</h1>
+  <div id="offers" class="row gy-4"></div>
+
+  <script>
+    const API = 'http://localhost:4000/api/prices'; // ✅ Using prices route now
+
+    async function loadOffers() {
+      try {
+        const res = await fetch(API);
+        const plans = await res.json();
+        const container = document.getElementById('offers');
+        container.innerHTML = plans.map(p => `
+          <div class="col-md-4">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">${p.name}</h5>
+                <p class="card-text">₹ ${p.price} for ${p.duration}</p>
+                <a href="payment.html" class="btn btn-success">Subscribe</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch {
+        document.getElementById('offers').innerHTML =
+          '<p class="text-danger">Unable to load membership plans.</p>';
+      }
+    }
+
+    window.onload = loadOffers;
+  </script>
+</body>
+</html>
