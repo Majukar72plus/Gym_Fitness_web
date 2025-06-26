@@ -39,7 +39,7 @@ This project offers a robust Gym Fitness Website allowing gym users to register,
 - **Backend:** Node.js, Express.js  
 - **Database:** MongoDB (Atlas or local)  
 - **Version Control:** Git, GitHub  
-live Preview:-https://fitlab-ultimez.web.app
+- **live Preview:-** https://fitlab-ultimez.web.app
 ---
 
 ## Folder Structure
